@@ -21,6 +21,12 @@ textarea {
 body {
     font-size: 1em;
     line-height: 1.4;
+    /*
+     * Padding to keep the container
+     * and navbar from overlapping
+     */
+    padding-top: 60px;
+    padding-bottom: 40px;
 }
 
 /*
