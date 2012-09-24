@@ -2,7 +2,7 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="ngView"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -26,7 +26,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
     </head>
-    <body>
+    <body ng-controller="MainCntl">
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
@@ -42,18 +42,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </a>
-              <a class="brand" href="#">Archipel</a>
+              <a class="brand" href="/">Archipel</a>
               <div class="nav-collapse collapse">
                 <ul class="nav">
-                  <li class="active"><a href="#">About</a></li>
+                  <li class="active"><a href="/about">About</a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Characters <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#new">Create new</a></li>
+                      <li><a href="/char/new">Create new</a></li>
                       <li class="divider"></li>
                       <li class="nav-header">Saved Characters</li>
-                      <li><a href="#glaurung">Glaurung</a></li>
-                      <li><a href="#nayak">Nayak</a></li>
+                      <li ng-repeat="char in chars"><a ng-href="/char/{{char.name}}">{{char.name}}</a></li>
                     </ul>
                   </li>
                   <!-- TODO: About and Contact pages
@@ -73,41 +72,14 @@
           </div>
         </div>
 
-        <div class="container">
-
-          <!-- Main hero unit for a primary marketing message or call to action -->
-          <div class="hero-unit">
-            <h1>Welcome to Archipel</h1>
-            <p>This is the character creation companion webapp for all your Archipel role-playing needs. It allows you to create, save, and modify characters, and convenienty keeps track of all character point spend.</p>
-            <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-          </div>
-
-          <!-- Example row of columns -->
-          <div class="row">
-            <div class="span4">
-              <h2>Feature 1</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="span4">
-              <h2>Feature 2</h2>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-            <div class="span4">
-              <h2>Feature 3</h2>
-              <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-              <p><a class="btn" href="#">View details &raquo;</a></p>
-            </div>
-          </div>
-
-          <hr>
-
-          <footer>
-            <p>&copy; Alpha team 2012</p>
-          </footer>
-
+        <div class="container" ng-view>
         </div> <!-- /container -->
+
+        <hr>
+
+        <footer>
+          <p>&copy; Alpha team 2012</p>
+        </footer>
 
         <!-- Le javascript
         ================================================== -->
@@ -115,8 +87,6 @@
         <script src="js/vendor/modernizr-2.6.1.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
         <!-- Le bootstrap -->
         <script src="js/vendor/bootstrap.min.js"></script>
         <!-- {less} -->
@@ -124,6 +94,9 @@
         <!-- Le magic -->
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
         <script>window.angular || document.write('<script src="js/vendor/angular.min.js"><\/script>')</script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
